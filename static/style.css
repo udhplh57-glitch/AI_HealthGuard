@@ -1,0 +1,105 @@
+/* خلفية للموقع */
+body {
+    margin: 0;
+    font-family: "Cairo", sans-serif;
+    background: linear-gradient(135deg, #b3e5fc, #e1f5fe, #ffffff);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* هيدر ثابت */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    padding: 15px 25px;
+    border-bottom: 2px solid #90caf9;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+/* الشعار */
+.app-logo {
+    width: 60px;
+    height: 60px;
+}
+
+/* العنوان */
+.app-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #0d47a1;
+}
+
+/* صندوق المحتوى */
+.container {
+    width: 90%;
+    max-width: 480px;
+    margin: 40px auto;
+    background: #ffffffd9;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 4px 15px #00000030;
+    animation: slideUp 0.9s ease-out;
+}
+
+/* النص الفرعي */
+.subtitle {
+    font-size: 18px;
+    color: #0d47a1;
+    margin-bottom: 15px;
+}
+
+/* الحقول */
+textarea, input[type="file"] {
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 12px;
+    padding: 10px;
+    border: 2px solid #64b5f6;
+    border-radius: 10px;
+    background: #e3f2fd;
+}
+
+/* زر التحليل */
+.btn {
+    width: 100%;
+    background: #1976d2;
+    color: white;
+    font-size: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #0d47a1;
+}
+
+/* الخطأ */
+.error {
+    background: #ff8a80;
+    padding: 10px;
+    border-radius: 10px;
+    color: #b71c1c;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* أنيميشن */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(25px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+

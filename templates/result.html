@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>AI HealthGuard - نتيجة التحليل</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(120deg, #f7f9fc, #e0e6f1);
+            color: #2C3E50;
+            margin: 0;
+            padding: 20px;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #2D9CDB;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .result-section, .tips, .chatgpt-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .result-section {
+            background: linear-gradient(to right, #fceabb, #f8b500);
+        }
+
+        .tips {
+            background: linear-gradient(to right, #d5f5e3, #82e0aa);
+        }
+
+        .chatgpt-section {
+            background: linear-gradient(to right, #e8eaf6, #9fa8da);
+        }
+
+        .risk {
+            font-weight: bold;
+            color: #E74C3C;
+            font-size: 1.2em;
+        }
+
+        .low-risk {
+            font-weight: bold;
+            color: #27AE60;
+            font-size: 1.2em;
+        }
+
+        ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        li {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        li::before {
+            content: "✔"; /* أيقونة لكل نصيحة */
+            position: absolute;
+            left: 0;
+            color: #2D9CDB;
+            font-weight: bold;
+        }
+
+        a {
+            color: #9B51E0;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #2D9CDB;
+            color: #fff;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: #2380c4;
+        }
+
+        p strong {
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>نتيجة التحليل للأعراض</h1>
+
+    <div class="result-section">
+        <p><strong>الأعراض المدخلة:</strong> {{ symptoms }}</p>
+        <p><strong>درجة الخطر:</strong> 
+            {% if risk == 'مرتفع' %}
+                <span class="risk">{{ risk }}</span>
+            {% else %}
+                <span class="low-risk">{{ risk }}</span>
+            {% endif %}
+        </p>
+        <p><strong>درجة الثقة:</strong> {{ confidence }}%</p>
+    </div>
+
+    <div class="tips">
+        <h2>نصائح التطبيق:</h2>
+        <ul>
+            {% for tip in tips %}
+                <li>{{ tip }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% if chatgpt_advice and chatgpt_advice != 'حدث خطأ أثناء جلب النصائح' %}
+    <div class="chatgpt-section">
+        <h2>نصائح من ChatGPT:</h2>
+        <ul>
+            <li>{{ chatgpt_advice }}</li>
+        </ul>
+
+        {% if chatgpt_link %}
+        <p><a href="{{ chatgpt_link }}" target="_blank">اضغط هنا لمتابعة الأعراض في ChatGPT</a></p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <a href="/" class="back-link">العودة للصفحة الرئيسية</a>
+</div>
+</body>
+</html>
+
+
+
+ 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>AI HealthGuard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+
+</head>
+
+<body>
+
+<!-- هيدر الشعار -->
+<div class="header">
+    <img src="{{ url_for('static', filename='images/app_icon.png') }}" class="app-logo">
+    <h1 class="app-title">AI HealthGuard</h1>
+</div>
+
+<!-- المحتوى -->
+<div class="container">
+
+    <p class="subtitle">نموذج مساعد للتقييم المبدئي للأعراض</p>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form action="{{ url_for('analyze') }}" method="POST" enctype="multipart/form-data">
+
+        <label>الأعراض (مطلوب)</label>
+        <textarea name="symptoms" placeholder="اكتب الأعراض هنا..." required></textarea>
+
+        <label>صورة (اختياري)</label>
+        <input type="file" name="image">
+
+        <label>تسجيل صوت السعال (اختياري)</label>
+        <input type="file" name="audio">
+
+        <button type="submit" class="btn">تحليل الأعراض</button>
+    </form>
+
+</div>
+
+</body>
+</html>
